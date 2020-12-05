@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+</head>
+<body class="bod"><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  position: fixed;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  padding: 0px;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div></div>
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+
+      </div>
+    </div>
+  </div>
+
+<style>
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after { 
+    box-sizing: inherit; 
+  }
+
+  div {
+    width: 100%;
+    padding: 100px;
+  }
+
+  .one {
+    background: thistle;
+  }
+
+  .two {
+    background: mistyrose;
+  }
+
+  .three {
+    background: coral;
+  }
+</style>
+
+<button>Click Once param</button>
+<script>
+const divs =document.querySelectorAll('div');
+
+/**
+ * 顯示目前觸發的 DOM 
+ * 
+ * @param {any} e 
+ */
+function logText(e){
+  console.log(this.classList.value);
+}
+
+// 變更為捕獲
+divs.forEach(div => div.addEventListener('click',logText,{capture:true}));
+
+//使用 once 參數
+const button = document.querySelector('button');
+button.addEventListener('click', () => {
+    console.log('only Click once!!!');
+  }, {
+    once: true
+  });
+</script>
+</body>
+</html>

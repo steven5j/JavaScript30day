@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+</head>
+<body >
+  <div style="
+    height: 50px;
+    width: 100vw;
+    background-color: crimson ;
+    font-size: 20px;
+    position: fixed;
+    top:0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Microsoft JhengHei;
+    color: antiquewhite;
+    font-weight: bolder;
+    ">
+<div>製作：<a  href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+</div></div>
+
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+
+  <style>
+    html {
+        background: #018ded url(http://unsplash.it/1500/1000?image=881&blur=5);
+        background-size: cover;
+        text-align: center;
+        font-size: 10px;
+        font-family: "helvetica neue";
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        margin: 0;
+        min-height: 100vh;
+        font-size: 2rem;
+    }
+
+    .clock {
+        position: relative;
+        margin: 50px auto;
+        padding: 2rem;
+        width: 30rem;
+        height: 30rem;
+        border: 20px solid white;
+        border-radius: 50%;
+        /* 影子透明 要製作內部透明框的要特別記住這塊*/
+        box-shadow: 0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #efefef,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .clock-face {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform: translateY(-3px); /* account for the height of the clock hands */
+    }
+
+    .hand {
+        position: absolute;
+        top: 50%;
+        width: 50%;
+        height: 6px;
+        background: black;
+        transition: all 0.05s;
+        /* 給予其所有 transition的預設 */
+        transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);     /* 貝茲曲縣 試出一個最適合的即可 要讓他開始跑的時候有點跑超過又快速回到相關位*/
+        transform: rotate(90deg); /*指針初始點轉90度(就是轉到12點鐘位置) */
+        /* 讓時鐘看起來更真實 額外添加 */
+        transform-origin: 100%;      /* 讓指針錨點在最右邊 */
+    }
+  </style>
+
+
+  <script>
+const oSecond=document.querySelector(".second-hand");
+const oMins=document.querySelector(".min-hand");
+const oHour=document.querySelector(".hour-hand");
+
+
+
+function setDate(){
+const time = new Date();
+const seconds = time.getSeconds();
+const mins = time.getMinutes();
+const hours= time.getHours();
+
+const secondsDegrees  = ((seconds/60)*360)+90;//讓秒針對應上360度
+// + 90是為了把平行的指針轉到中間開始計算角度
+oSecond.style.transform=`rotate(${secondsDegrees}deg)`;//用css的transform:rotate 去旋轉角度
+
+
+const minsDegrees  = (((mins/60)*360)+((seconds/60)*6)+90);//讓時針對應上360度
+// + 90是為了把平行的指針轉到中間開始計算角度
+oMins.style.transform=`rotate(${minsDegrees}deg)`;//用css的transform:rotate 去旋轉角度
+
+const hoursDegrees = (hours/12)*360+(mins/60)*30+((seconds/60)/60)*30+90;
+oHour.style.transform=`rotate(${hoursDegrees}deg)`;
+}
+
+setInterval(setDate, 1000);
+// 無限執行SetDate,每1000豪秒執行一次
+setDate();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>  <div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  margin-top:-8px ;
+  margin-left:-8px ;
+  position: block;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div>
+  </div>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular 正常
+    console.log("hello");
+    // Interpolated
+    console.log("Hello I am a %s string!","💩")
+    // Styled
+    console.log("%c I am some special text","font-size:50px;background:red;text-shadow:10px 10px 0 blue");
+    //------
+
+    // warning!
+    console.warn("warning!!");
+    // Error :|
+    console.error("Error");
+    // Info
+    console.info("info");
+    //------
+
+    // Testing 在錯測試的時候使用到
+    console.assert(document.querySelector("p").classList.contains("anyclass"),"This is wrong")
+    // clearing 清空
+    console.clear();
+
+    //------
+
+    // Viewing DOM Elements
+    console.log(document.querySelector("p"));
+    console.dir(document.querySelector("p"));
+
+    // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`this is dog name : ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+
+    }
+    );
+    // counting
+
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+
+    // timing
+    console.time("fetching data");
+    fetch("https://api.github.com/users/wesbos").then(data => data.json()).then(data => {
+      console.timeEnd("fetching data");
+      console.log(data);
+    })
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sort Without Articles</title>
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  margin-top:-8px ;
+  margin-left:-8px ;
+  position: fixed;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div>
+  </div>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: url("https://picsum.photos/2000/2000");
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #bands {
+      list-style: inside square;
+      font-size: 20px;
+      background: white;
+      width: 500px;
+      margin: auto;
+      padding: 0;
+      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+    
+    #bands li {
+      border-bottom: 1px solid #efefef;
+      padding: 20px;
+    }
+    
+    #bands li:last-child {
+      border-bottom: 0;
+    }
+
+    a {
+      color: #ffc600;
+      text-decoration: none;
+    }
+
+  </style>
+
+  <ul style="margin-top:100px ;" id="bands"></ul>
+
+<script>
+const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+//聲明去絕對函數，使用String.replace()函數實現 \s{1}是空白
+function delPrefix(item){
+  return item.replace(/^(A|The|An)\s{1}/i,'').trim();
+}
+//使用Array.sort()對片段進行排序
+var sortbands = bands.sort(function(a,b){
+  return delPrefix(a) > delPrefix(b)?1:-1;
+})
+console.log(sortbands);
+document.getElementById('bands').innerHTML =sortbands.map(band =>`<li>${band}</li>`).join('');
+
+</script>
+
+</body>
+</html>

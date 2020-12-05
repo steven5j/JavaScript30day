@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  margin-left:-8px ;
+  position: fixed;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+<div>製作：<a  href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+</div></div>
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+//設定cities 將資料存進cities陣列
+const cities = [];
+fetch(endpoint)
+  .then(blob => blob.json())
+  .then(data => cities.push(...data));
+console.log(cities);
+
+function findMatches(wordToMatch, cities){
+return cities.filter(place => {
+  //這裡篩選匹配城市和行政區
+  // re = new RegExp("pattern", "flag")
+  // re = /pattern/flag
+  // pattern 代表正規表示法來顯示的字串
+  // flag 則是比對的方式。flag 的值有三種：
+  //                     g：全域比對（Global match）
+  //                     i：忽略大小寫（Ignore case）
+  //                     gi：全域比對並且忽略大小寫
+  const regex = new RegExp(wordToMatch,'gi');
+  return place.city.match(regex) || place.state.match(regex)
+
+});
+}
+
+
+//用這個網址去理解這條正則運算式表示的意思 https://regexper.com/
+function numberWithCommas(x){
+  //將  /\B(?=(\d{3})+(?!\d))/g  的規則換成字串,
+ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+}
+
+
+function displayMatches(){
+  //篩選匹配城市和行政區
+  const matchArray = findMatches(this.value,cities)
+  //陣列進行 map 尋覽，利用文字範本組合 html 內容
+  const html = matchArray.map( place =>{
+    const regex = new RegExp(this.value,"gi");
+    const cityName = place.city.replace(regex,`<span class = "hl">${this.value}</span>`);
+    const stateName = place.state.replace(regex,`<span class = "hl">${this.value}</span>`);
+    return`<li>
+    <span class="name">${cityName},${stateName}<span>
+    <span class="population">${numberWithCommas(place.population)}<span>
+    </li>`
+    //join 類似toString 不過可以用不同的格式分割
+  }  ).join("");
+  suggestions.innerHTML = html;
+}
+
+
+const suggestions = document.querySelector('.suggestions');
+//把chang 和 keyup 加進去
+document.querySelector(".search").addEventListener("chang",displayMatches);
+document.querySelector(".search").addEventListener("keyup",displayMatches);
+
+</script>
+</body>
+</html>

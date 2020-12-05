@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Speech Detection</title>
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  margin-top:-8px ;
+  margin-left:-8px ;
+  position: block;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div>
+  </div>
+
+  <div class="words" contenteditable>
+  </div>
+
+<script>
+  // 將全域環境中的 SpeechRecognition 指定
+  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  // 建立一個變數recognition來放為語音識別功能
+  const recognition = new SpeechRecognition();
+  // 讓語音識別回傳識別後的資訊（預設為false)
+  recognition.interimResults = true;
+  // // 語音識別語言設定為 台灣中文
+  // recognition.lang='zh-tw';
+
+  // 建立元素 p (文字)，等下識別後的文字將塞入
+  let p = document.createElement("p");
+  // 取得 class 為 .words
+  const words = document.querySelector(".words");
+  // 將 p 塞進 .words DOM
+  words.appendChild(p);
+
+  // 開始識別
+  recognition.start();
+  // 當識別結束，重複開始識別
+  recognition.addEventListener("end",recognition.start);
+
+  // 識別產生結果設定
+  recognition.addEventListener('result', e => {
+    // 識別結果為 SpeechRecognitionResultList 取得 transcript 屬性，就是辨識文字
+    // console.log(e.results);
+    const  transcript = Array.from(e.results)
+    .map(result => result[0] )
+    .map(result => result.transcript)
+    .join('');
+
+    // 輸出辨識文字內容(不使用 特殊內容使用符號文字取代)
+    // p.textContent = transcript;
+    // 特殊內容使用符號文字取代
+    const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
+    p.textContent = poopScript;
+
+    //確認辨識結束，就產生新的 p 元素
+    if(e.results[0].isFinal){
+      p = document.createElement('p');
+      words.appendChild(p);
+    }
+  
+  });
+  
+
+    
+
+</script>
+
+
+  <style>
+    html {
+      font-size: 10px;
+    }
+
+    body {
+      background: #ffc600;
+      font-family: 'helvetica neue';
+      font-weight: 200;
+      font-size: 20px;
+    }
+
+    .words {
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+      padding: 1rem 2rem 1rem 5rem;
+      background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+      background-size: 100% 3rem;
+      position: relative;
+      line-height: 3rem;
+    }
+    
+    p {
+      margin: 0 0 3rem;
+    }
+
+    .words:before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      top: 0;
+      left: 30px;
+      bottom: 0;
+      border: 1px solid;
+      border-color: transparent #efe4e4;
+    }
+  </style>
+
+</body>
+</html>

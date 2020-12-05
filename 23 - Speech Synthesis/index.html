@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Speech Synthesis</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  position: fixed;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div></div>
+
+    <div class="voiceinator">
+
+      <h1>The Voiceinator 5000</h1>
+
+      <select name="voice" id="voices">
+        <option value="">Select A Voice</option>
+      </select>
+
+      <label for="rate">Rate:</label>
+      <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
+
+      <label for="pitch">Pitch:</label>
+
+      <input name="pitch" type="range" min="0" max="2" step="0.1">
+      <textarea name="text">Hello! I love JavaScript 我是 Steven玄 👍😂❤ 歡迎到我的網站🌹</textarea>
+      <button id="stop">Stop!</button>
+      <button id="speak">Speak</button>
+
+    </div>
+
+<script>
+  const msg = new SpeechSynthesisUtterance();
+  let voices = [];
+  const voicesDropdown = document.querySelector('[name="voice"]');
+  const options = document.querySelectorAll('[type="range"], [name="text"]');
+  const speakButton = document.querySelector('#speak');
+  const stopButton = document.querySelector('#stop');
+  //設定合成語音 API 物件，並取得畫面文字為語音內容
+  msg.text=document.querySelector('[name = "text"]').value;
+  //填充選單內容
+   function populateVoices(){
+    voices = this.getVoices();
+    voicesDropdown.innerHTML = voices
+        .filter(voice=>voice.lang.includes('')).map(voice =>`<option value="${voice.name}">${voice.name} (${voice.lang}) </option>`).join('');
+   };
+
+  // 設定語音
+  function setVoice() {
+    msg.voice = voices.find(voice => voice.name === this.value);
+  };
+
+
+  // 播放與停止
+  function toggle(startOver = true){
+    speechSynthesis.cancel();
+    if(startOver){
+      speechSynthesis.speak(msg);
+    }
+  }
+  // 設定播放速度、文字、聲道
+  function setOption(){
+    console.log(this.name,this.value);
+    msg[this.name] =this.value;
+    toggle();
+  }
+  // 播放
+  speakButton.addEventListener('click',toggle);
+  // 停止播放
+  stopButton.addEventListener('click',() => toggle(startOver=false));
+  //每個選項只要被選擇後就進行設定撥放速度文字
+  options.forEach(option => option.addEventListener('change', setOption));
+  //當語音進行 填充選單內容
+  speechSynthesis.addEventListener('voiceschanged', populateVoices);
+  // 語音下拉選單變更
+  voicesDropdown.addEventListener('change', setVoice);
+</script>
+
+</body>
+</html>

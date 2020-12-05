@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Shadow</title>
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  margin-top:-8px ;
+  margin-left:-8px ;
+  position: block;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1 contenteditable>🔥WOAH!</h1>
+  </div>
+
+  <style>
+  html {
+    color: black;
+    font-family: sans-serif;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+
+  h1 {
+    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    font-size: 100px;
+  }
+  </style>
+
+<script>
+  //取得 .hero 的 DOM
+  const hero = document.querySelector(".hero");
+  const text = hero.querySelector('h1');
+  const walk = 700;//500px
+  
+  //建立 mousemove 事件與綁定 shadow
+  hero.addEventListener('mousemove',showdow);
+
+  //陰影事件
+  function showdow(e) {
+    
+    // 取得 hero 滿版畫面的長與寬
+    const { offsetWidth: width, offsetHeight: height } = hero;
+    //console.log([width, height]);
+    //取得滑鼠的移動距離
+     // equal let mouseX = e.offsetX, mouseY = e.offsetY;
+    let { offsetX: mouseX, offsetY: mouseY } = e;
+    //console.log([mouseX, mouseY]);
+    // 當滑鼠移動到文字上的時候
+    // 利用目前滑鼠在文字上的位置 X 加上該文字容器的 offsetLeft
+  if (e.target !== this) {
+    mouseX += e.target.offsetLeft;
+    mouseY += e.target.offsetTop;
+  }
+
+  // 移動的位置
+  // 添加 rount 來四捨五入
+  // 扣掉固定距離的一半，讓數值變成負值
+  const xWalk = Math.round(mouseX / width * walk - walk/2 );
+  const yWalk = Math.round(mouseY / height * walk - walk/2 );
+  text.style.textShadow = `
+      ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7),
+      ${xWalk * -1}px ${yWalk}px 0 rgba(0,255,255,0.7),
+      ${yWalk}px ${xWalk * -1}px 0 rgba(0,255,0,0.7),
+      ${yWalk * -1}px ${xWalk}px 0 rgba(0,0,255,0.7)
+    `;
+  }
+ 
+</script>
+</body>
+</html>

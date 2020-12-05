@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  margin-top:-8px ;
+  margin-left:-8px ;
+  position: block;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div>
+  </div>
+  <H1 style="font-family: Microsoft JhengHei;">試著用鍵盤輸入'steven'</H1>
+<script>
+  //聲明一個空數組，用於存放的輸入字符，同時聲明“暗號”
+  const  pressed =[];
+  const secretCode = 'steven';
+//添加鍵盤的keyup事件監聽，用箭頭函數的參數來接收事件。
+  window.addEventListener('keyup',(e)=>{
+    console.log(e.key);
+    pressed.push(e.key);
+    pressed.splice(-secretCode.length-1,pressed.length-secretCode.length);//截取數組
+    if(pressed.join('').includes(secretCode)){//判斷是否符合暗號
+      console . log ( ' DING DING! ' );
+	 cornify_add ();
+    }
+    console.log(pressed);
+  })
+
+</script>
+</body>
+</html>

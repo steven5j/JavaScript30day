@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+
+<body>
+  <div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  margin-top:-8px ;
+  margin-left:-8px ;
+  position: block;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div>
+  </div>
+  <canvas id="draw" width="800" height="800"></canvas>
+  <script>
+    //立即執行涵數
+    ; (function () {
+      const canvas = document.querySelector("#draw");
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.hight = window.innerHeight;
+      ctx.strokeStyle = '#c13b3b';
+      ctx.linrJoin = "round";
+      ctx.lineCap = 'round';
+      ctx.lineWidth = 75;
+
+      let isDrawing = false;
+      let lastX = 0;
+      let lastY = 0;
+      let hue = 0;
+      let direction = true;
+
+
+      function draw(e) {
+        if (!isDrawing) return;
+        console.log(e);
+        ctx.strokeStyle = `hsla(${hue},100%,50%,50%)`;
+        ctx.beginPath();
+        //start from
+        ctx.moveTo(lastX, lastY);
+        //go to
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+        // 色相變化
+        hue++;
+        if (hue >= 360) {
+          hue = 0;
+        }
+
+        //線條寬度變化
+        if (ctx.lineWidth >= 75 || ctx.lineWidth <= 10) {
+          direction = !direction;
+        }
+        if (direction) {
+          ctx.lineWidth++;
+        } else {
+          ctx.lineWidth--;
+        }
+
+      };
+
+      //滑鼠動作
+      canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+      });
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', () => { isDrawing = false });
+      canvas.addEventListener('mouseleave', () => { isDrawing = false });
+
+
+    })()
+
+
+
+
+
+  </script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+  </style>
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  margin-top:-8px ;
+  margin-left:-8px ;
+  position: block;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div>
+  </div>
+  按F12查看
+
+  <script>
+    // start with strings, numbers and booleans
+    let age = 100;
+    let age2 = age;
+    console.log(age,age2);//100 100
+    age = 200;
+    console.log(age,age2);//200 100
+
+    let name = 'steven';
+    let name2 = name;
+    console.log(name, name2);
+    name = 'wesley';
+    console.log(name, name2);
+
+    // Let's say we have an array
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+
+    // and we want to make a copy of it.
+    const team = players;
+    console.log(players,team);
+
+    // You might think we can just do something like this:
+    team[3]='tux';
+    // however what happens when we update that array?
+    console.log('原來的陣列複製方式!因為team只是這個數組的引用，並不是它的複製。team狀語從句：players這兩個變量指向的同的英文一個數組。')
+    console.log(players,team);
+    // now here is the problem!
+
+    // oh no - we have edited the original array too!
+
+    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+
+    // So, how do we fix this? We take a copy instead!
+    //由於運行得到slice的結果是一個對原薄片的淺拷貝，原樣不會被修改。所以如果修改這兩個切片中任意一個，另一個都不會受到影響。
+    console.log('接下來為真正的複製')
+     const team2 = players.slice();
+    team2[3]='lux2';
+    console.log('slice()')
+    console.log(players,team2);
+    // one way
+
+    // or create a new array and concat the old one in
+    const team3 = [].concat(players);
+    team3[3] = 'Lux3';
+    console.log('concat()')
+    console.log(players,team3);
+    // or use the new ES6 Spread
+    const team4 = [...players];
+    team4[3] = 'Lux4';
+    console.log('擴展語法');
+    console.log(players, team4);
+
+    const team5 = Array.from(players);
+    team5[3] = 'Lux5';
+    console.log('Array.from');
+    console.log(players, team5);
+
+    // now when we update it, the original one isn't changed
+
+    // The same thing goes for objects, let's say we have a person object
+
+    // with Objects
+    console.log('試試看 Objects的物件數據');
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
+
+    // and think we make a copy:
+    const captain = person;
+    captain.number  = 99 ;
+    console.log('用一般的做法，Objects的物件數據')
+    console.log(person,captain);
+    // Object {name: "Wes Bos", age: 80, number: 99} 
+    // Object {name: "Wes Bos", age: 80, number: 99}
+    // how do we take a copy instead?
+    console.log('Object.assign()');
+    const cap2 = Object.assign({},person,{number:99,age:12});
+    console.log(person,cap2);
+    // We will hopefully soon see the object ...spread
+    console.log('object ...spread展開語法(結果不能用)');
+    const cap3 = {...person};
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    const wes = {
+  name: 'Wes',
+  age: 100,
+  social: {
+    twitter: '@wesbos',
+    facebook: 'wesbos.developer'
+  }
+};
+  console.log('JSON轉換 利用JSON可以先將對象轉成字符串的格式，然後再把它轉成JSON，從而實現複製。');
+  const dev = Object.assign({},wes);
+  const dev2 = JSON.parse(JSON.stringify(wes));
+  console.log(wes,dev,dev2);
+
+  </script>
+
+</body>
+</html>

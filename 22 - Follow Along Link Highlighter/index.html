@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>👀👀👀Follow Along Nav</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  position: fixed;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div></div>
+
+    <nav>
+      <ul class="menu">
+        <li><a class="a" href="">Home</a></li>
+        <li><a class="a" href="">Order Status</a></li>
+        <li><a class="a" href="">Tweets</a></li>
+        <li><a class="a" href="">Read Our History</a></li>
+        <li><a class="a" href="">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+      <p>Lorem ipsum dolor sit amet, <a class="a" href="">consectetur</a> adipisicing elit. Est <a class="a" href="">explicabo</a> unde natus necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
+      <p>Aspernatur sapiente quae sint <a class="a" href="">soluta</a> modi, atque praesentium laborum pariatur earum <a class="a" href="">quaerat</a> cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
+      <p>Cum ipsam quod, incidunt sit ex <a class="a" href="">tempore</a> placeat maxime <a class="a" href="">corrupti</a> possimus <a class="a" href="">veritatis</a> ipsum fugit recusandae est doloremque? Hic, <a class="a" href="">quibusdam</a>, nulla.</p>
+      <p>Esse quibusdam, ad, ducimus cupiditate <a class="a" href="">nulla</a>, quae magni odit <a class="a" href="">totam</a> ut consequatur eveniet sunt quam provident sapiente dicta neque quod.</p>
+      <p>Aliquam <a class="a" href="">dicta</a> sequi culpa fugiat <a class="a" href="">consequuntur</a> pariatur optio ad minima, maxime <a class="a" href="">odio</a>, distinctio magni impedit tempore enim repellendus <a class="a" href="">repudiandae</a> quas!</p>
+    </div>
+
+  <script>
+    // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    // 取得所有超連結 a 同時class是.a的
+    const triggers = document.querySelectorAll('a.a');
+
+    // 建立 highlight 元素
+    const highlight = document.createElement('span');
+    // 設定 CSS
+    highlight.classList.add('highlight');
+    // 加入到 body
+    document.body.appendChild(highlight);
+
+    //創建highlightLink 方法
+    function highlightLink(){
+      // 取得元素的大小與位置
+      const linkCoords = this.getBoundingClientRect();
+      console.dir(linkCoords);
+      //用json的方式，一次宣告好幾個值
+      const coords = {
+        width: linkCoords.width,
+        height: linkCoords.height,
+        top:linkCoords.top + window.scrollY,
+        left:linkCoords.left +window.scrollX
+      }
+      // 設定 highlight 寬度等於目前元素寬度
+      highlight.style.width = `${coords.width}px`;
+      // 設定 highlight 高度等於目前元素高度
+      highlight.style.height = `${coords.height}px`;
+        
+      console.log([window.scrollX,window.scrollY,coords.left,coords.top]);
+      // 移動 highlight 元素到目前元素位置，考量因為有 scroll bar
+      highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+    
+    }
+
+
+    // 對所有超連結綁定事件
+    triggers.forEach(a => a.addEventListener('mouseenter',highlightLink));
+
+  </script>
+</body>
+</html>
+

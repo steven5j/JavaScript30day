@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit-JS搖滾鼓</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div style="
+    height: 50px;
+    width: 100vw;
+    background-color: crimson ;
+    font-size: 20px;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Microsoft JhengHei;
+    color: antiquewhite;
+    font-weight: bolder;
+    ">
+<div>製作：<a  href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+</div></div>
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/hihat.wav"></audio>
+  <audio data-key="68" src="sounds/kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tom.wav"></audio>
+  <audio data-key="76" src="sounds/tink.wav"></audio>
+
+  <script>
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return;//防呆用，如e.propertyName沒有transform動畫，則直接跳出。
+      e.target.classList.remove('playing');//移除playing這個class
+    }
+
+    function playSound(e) {
+      const oAudio = document.querySelector(`audio[data-key="${e.keyCode}"]`);//設定audio物件
+      const oKey = document.querySelector(`div[data-key="${e.keyCode}"]`);//設定鍵盤KEY物件
+      if (!oAudio) return;//  如果沒有按到對應的按鍵，則停止此函式
+
+      oKey.classList.add("playing"); ///為該元素增加 class=playing
+      oAudio.currentTime = 0;//設定audio的當前時間為0(重置聲音的概念)
+      oAudio.play();//  播放元素的音效
+    }
+
+    const aKeys = Array.from(document.querySelectorAll('.key'));//用Array.form()創造新的陣列，把所有的class為key集合起來
+    aKeys.forEach(aKey => aKey.addEventListener('transitionend', removeTransition));//把aKeys的陣列資料一條條在程式碼內印出來。
+    //aKey.addEventListener('transitionend',removeTransition) transitionend 事件会在 CSS transition 结束后触发，所以當觸發的時候，執行移除效果的函式
+
+    window.addEventListener("keydown", playSound);//當按下案件觸發
+  </script>
+
+
+</body>
+
+</html>

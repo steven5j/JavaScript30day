@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Get User Media Code Along!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  margin-top:-8px ;
+  margin-left:-8px ;
+  position: block;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div>
+  </div>
+
+  <div class="photobooth">
+    <div class="controls">
+      <button onClick="takePhoto()">Take Photo(拍照)</button>
+      <button onClick="switchType(1)">rgb Split(RGB分離)</button>
+      <button onClick="switchType(2)">red Effect(紅色效果)</button>
+      <button onClick="switchType(3)">alpha Screen(去背模式)</button>
+      <div class="rgb" style = 'display:none;'>
+        <label for="rmin">Red Min:</label>
+        <input type="range" min=0 max=255 name="rmin">
+        <label for="rmax">Red Max:</label>
+        <input type="range" min=0 max=255 name="rmax">
+
+        <br>
+
+        <label for="gmin">Green Min:</label>
+        <input type="range" min=0 max=255 name="gmin">
+        <label for="gmax">Green Max:</label>
+        <input type="range" min=0 max=255 name="gmax">
+
+        <br>
+
+        <label for="bmin">Blue Min:</label>
+        <input type="range" min=0 max=255 name="bmin">
+        <label for="bmax">Blue Max:</label>
+        <input type="range" min=0 max=255 name="bmax">
+      </div>
+    </div>
+    <div class="box1">
+      <div class="box1-2" >
+      <h2>原畫面</h2>
+      <video class="player"></video>
+    </div>
+    <div class="box1-2">
+      <h2>Canvas 2D繪製</h2>
+      <canvas class="photo"></canvas> <!--用canvas 這個類別使用-->
+    </div>
+    </div>
+
+    
+    <div class="strip"></div>
+  </div>
+
+  <audio class="snap" src="http://wesbos.com/demos/photobooth/snap.mp3" hidden></audio>
+
+  <script src="scripts.js"></script>
+
+</body>
+</html>

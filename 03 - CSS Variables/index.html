@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+</head>
+
+<body>
+    <div style="
+    height: 50px;
+    width: 100vw;
+    background-color: crimson ;
+    font-size: 20px;
+    margin-left:-8px ;
+    position: fixed;
+    top:0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Microsoft JhengHei;
+    color: antiquewhite;
+    font-weight: 900;
+    ">
+<div>製作：<a  href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+</div></div>
+
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <label for="base">Base Color</label>
+    <!-- type選擇color當點選的時候會呼叫瀏覽器預設調色盤 -->
+    <input id="base" type="color" name="base" value="#ffc600">
+  </div>
+  <!-- https://source.unsplash.com/7bwQXzbF6KE/800x500 -->
+  <img src=" https://picsum.photos/800/500 ">
+
+
+  <style>
+    /* 自行加入的CSS變量設置 root為運作底層 */
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    /* 自行創建img並套用css變量 */
+     img {
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+      background: var(--base);
+    } 
+
+    /* 自行創建.h 並套用CSS變量  標題JS的變量 */
+      .hl {
+      color: var(--base);
+    } 
+
+  
+
+    /*
+      misc styles, nothing to do with CSS variables
+    */
+
+    body {
+      text-align: center;
+      background: #193549;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+
+    input {
+      width: 100px;
+    }
+  </style>
+
+  <script>
+    const aInputs = document.querySelectorAll('.controls input');
+
+    function UpdataEvent() {
+      // 我們將長度單位放在data-sizing，所以我們需要使用dataset.(data-後的名稱)，但是 color 並不需要長度單位，所以需要使用||''（或空值）
+      const suffix = this.dataset.sizing || '';
+      // 使用document.documentElement取得根元素，用setProperty來修改樣式
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    // 用Change 和 mousemove 去監聽aInputs的活動，並執行 UpdataEvent function    
+    aInputs.forEach(input => input.addEventListener('change', UpdataEvent));
+    aInputs.forEach(input => input.addEventListener('mousemove', UpdataEvent));
+
+
+  </script>
+
+</body>
+
+</html>
