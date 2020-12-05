@@ -3,7 +3,7 @@ const postDatas = [];
 // blog url
 const blogUrl = "https://steven5j.github.io/";
 // github url
-const githubUrl = "https://github.com/steven5j/JavaScript30day/tree/master/";
+const githubUrl = "https://github.com/steven5j/JavaScript30day/tree/main/";
 
 const couseList = document.querySelector(".courseList");
 
