@@ -1,9 +1,9 @@
 // get post data
 const postDatas = [];
 // blog url
-const blogUrl = "https://shunnien.github.io/";
+const blogUrl = "https://steven5j.github.io/";
 // github url
-const githubUrl = "https://github.com/shunnien/JavaScript30day/tree/master/";
+const githubUrl = "https://github.com/steven5j/JavaScript30day/tree/master/";
 
 const couseList = document.querySelector(".courseList");
 
