@@ -53,60 +53,6 @@ body {
   line-height: 1.6;
 }
 
-.courseList {
-  margin: 0;
-  padding: 0;
-}
-
-.courseList li {
-  display: inline-block;
-  margin: 20px;
-  list-style-type: none;
-}
-.course {
-  position: relative;
-  display: inline-block;
-  width: 400px;
-  background-color: #fafafa;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  text-align: center;
-  transition: 0.5s;
-  transition: 0.3s;
-  transform: scale(1);
-}
-.course__title,
-.course__desc {
-  margin: 2px 0px;
-  padding: 5px 10px;
-  background-color: #fafafa;
-  text-align: left;
-  font-size: 15px;
-}
-
-.course__btn {
-  display: inline-block;
-  overflow: hidden;
-  margin: 10px 5px;
-  padding: 10px 0px;
-  width: 120px;
-  outline: 0;
-  background-color: #333;
-  color: #fafafa;
-  vertical-align: middle;
-  text-decoration: none;
-  font-size: 14px;
-  cursor: pointer;
-  user-select: none;
-}
-
-@media screen and (max-width: 500px) {
-  .container {
-    width: 100%;
-  }
-  .course {
-    width: 100%;
-  }
-}
 
 /* ---------steven玄 新增的部分--------------- */
 
@@ -223,4 +169,10 @@ body {
     font-size: 14px;
     cursor: pointer;
     user-select: none;
+    transition: all  0.2s;
   }
+
+  .steven_course_btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px 20px rgba(165, 149, 3, 0.1);
+}
