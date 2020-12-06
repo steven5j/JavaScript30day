@@ -17,7 +17,7 @@ fetch("https://steven5j.github.io/JavaScript30day/postData.json")
 function Steven_createView() {
   let view = [];
   postDatas.forEach(data => {
-    view.push(`   <a href="${blogUrl}">
+    view.push(`   <a href="${blogUrl + data.blog}">
                     <li class="steven-card">
                       <img src="${blogUrl + data.img}" alt="">
                       <h3>[Day${data.no}] ${data.title}</h3>

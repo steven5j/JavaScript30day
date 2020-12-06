@@ -63,6 +63,7 @@ body {
   align-items: center;
   box-sizing: border-box;
   padding:50px 5px 50px 5px;
+  text-align: center;
    }   
   
    .steven_card_box a {
@@ -72,7 +73,7 @@ body {
   color: currentcolor;
    }   
       .steven-card {
-      width: calc(21%);
+      width: calc(28%);
       margin-bottom: 2rem;
       background: #fff;
       padding: 2rem;
@@ -139,7 +140,7 @@ body {
   }
   @media (max-width: 991.98px) {
       .steven-card {
-      width: calc(31% - 3rem);
+      width: calc(35%);
       }
      } 
   @media (max-width: 767.98px) {
@@ -156,6 +157,7 @@ body {
   }
 
   .steven_course_btn {
+    text-align:center;
     display: inline-block !important; 
     overflow: hidden;
     margin: 10px 5px;
