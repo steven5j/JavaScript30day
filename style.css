@@ -1,4 +1,4 @@
-* {
+body {
   margin: 0;
   padding: 0;
   background-color: #ffc600;
@@ -107,3 +107,120 @@ body {
     width: 100%;
   }
 }
+
+/* ---------steven玄 新增的部分--------------- */
+
+.steven_card_box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  padding:50px 5px 50px 5px;
+   }   
+  
+   .steven_card_box a {
+  display: contents;
+  font-style:normal;
+  text-decoration: none;
+  color: currentcolor;
+   }   
+      .steven-card {
+      width: calc(21%);
+      margin-bottom: 2rem;
+      background: #fff;
+      padding: 2rem;
+      list-style: none;
+      position: relative;
+      box-shadow: 0 0 10px 4px rgba(0,0,0,0.2);
+      transition: all 0.2s;
+      }
+  
+  
+  .steven-card:hover {
+      box-shadow: 0 0 40px 40px rgba(0,0,0,0.05);
+      transform: scale(1.1);
+      z-index: 2;
+      cursor: pointer;
+  }
+  .steven-card img{
+      object-fit: cover;
+      width: calc(100% + 4rem);
+      margin-left: -2rem;
+      margin-top: -2rem;
+      height: 150px;
+  
+      max-width: none;
+  }
+  .steven-card p {
+     font-size: 16px;
+     letter-spacing: 0px;
+     line-height: 16px;
+     text-align: center;
+  
+     padding: 0;
+     margin-top: 14px;
+      margin-left: 0rem;
+      margin-bottom: 14px;
+      }
+  .steven-tag>li{
+      background: #ffc600 ;
+      text-transform: uppercase;
+      padding: 4px 4px;
+      margin-bottom: 2px;
+      margin-left: 1px;
+      display:table;
+      font-size: 11px;
+      color: rgba(0,0,0,0.5);
+      font-weight: 600;
+      color:#f8f8f8;
+  
+      
+      line-height: 11px;
+      }
+  .steven-tags_item--1{
+      background: #4858b6;
+      color: rgba(255,255,255,0.6);
+  }
+  .steven-tag{
+      list-style: none;
+      padding: 0;
+      margin: -0.0rem 0rem;
+  }
+  .steven_card_box h3{
+  font-size: 20px;
+  margin-bottom: -0.2rem;
+  }
+  @media (max-width: 991.98px) {
+      .steven-card {
+      width: calc(31% - 3rem);
+      }
+     } 
+  @media (max-width: 767.98px) {
+      .steven-card {
+      width: calc(45% - 3rem);
+      }
+     } 
+  
+  @media (max-width: 575.98px) {
+      .steven-card {
+      width: 100%;
+      margin-bottom: 2rem;
+     }
+  }
+
+  .steven_course_btn {
+    display: inline-block !important; 
+    overflow: hidden;
+    margin: 10px 5px;
+    padding: 10px 0px;
+    width: 120px;
+    outline: 0;
+    background-color: #333 !important;
+    color: #fafafa !important;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
