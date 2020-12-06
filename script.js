@@ -3,7 +3,7 @@ const postDatas = [];
 // blog url
 const blogUrl = "https://stevenjhu.com/";
 // github url
-const githubUrl = "https://github.com/steven5j/JavaScript30day/tree/main/";
+const githubUrl = "https://steven5j.github.io/";
 
 const couseList = document.querySelector(".courseList");
 
@@ -22,7 +22,7 @@ function Steven_createView() {
                       <img src="${blogUrl + data.img}" alt="">
                       <h3>[Day${data.no}] ${data.title}</h3>
                       <p>${data.desc}</p>
-                      <a class="steven_course_btn" href="${blogUrl}JavaScript30day/${data.github}" target="_blank" >Demo</a>
+                      <a class="steven_course_btn" href="${githubUrl}JavaScript30day/${data.github}" target="_blank" >Demo</a>
                       <a class="steven_course_btn" href="${blogUrl +
                     data.blog}" target="_blank" >筆記</a>
                     </li>
