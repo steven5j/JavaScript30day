@@ -1,7 +1,7 @@
 // get post data
 const postDatas = [];
 // blog url
-const blogUrl = "https://steven5j.github.io/";
+const blogUrl = "https://stevenjhu.com/";
 // github url
 const githubUrl = "https://github.com/steven5j/JavaScript30day/tree/main/";
 
@@ -19,7 +19,7 @@ function Steven_createView() {
   postDatas.forEach(data => {
     view.push(`   <a href="${blogUrl}">
                     <li class="steven-card">
-                      <img src="${data.img}" alt="">
+                      <img src="${blogUrl + data.img}" alt="">
                       <h3>[Day${data.no}] ${data.title}</h3>
                       <p>${data.desc}</p>
                       <a class="steven_course_btn" href="${blogUrl}JavaScript30day/${data.github}" target="_blank" >Demo</a>
