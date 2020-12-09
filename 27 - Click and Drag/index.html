@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click and Drag</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  position: fixed;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  padding: 0px;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div></div>
+  <div class="items">
+    <div class="item item1">01</div>
+    <div class="item item2">02</div>
+    <div class="item item3">03</div>
+    <div class="item item4">04</div>
+    <div class="item item5">05</div>
+    <div class="item item6">06</div>
+    <div class="item item7">07</div>
+    <div class="item item8">08</div>
+    <div class="item item9">09</div>
+    <div class="item item10">10</div>
+    <div class="item item11">11</div>
+    <div class="item item12">12</div>
+    <div class="item item13">13</div>
+    <div class="item item14">14</div>
+    <div class="item item15">15</div>
+    <div class="item item16">16</div>
+    <div class="item item17">17</div>
+    <div class="item item18">18</div>
+    <div class="item item19">19</div>
+    <div class="item item20">20</div>
+    <div class="item item21">21</div>
+    <div class="item item22">22</div>
+    <div class="item item23">23</div>
+    <div class="item item24">24</div>
+    <div class="item item25">25</div>
+  </div>
+
+<script>
+  // 宣告
+  const slider = document.querySelector(".items");
+  // 宣告 紀錄滑鼠點擊的起始位置
+  let startX;
+  // 宣告 紀錄卷軸左邊位置
+  let scrollLeft;
+
+  /**
+ * 移除樣式
+ */
+function handleRemoveActive() {
+  slider.classList.remove("active");
+}
+/**
+ * 滑鼠按鍵按下
+ * @param {*} e
+ */
+function handleMouseDown(e) {
+  slider.classList.add("active");
+  //設定起始位置
+  startX = e.pageX - slider.offsetLeft;
+  //記錄卷軸目前位置
+  scrollLeft = slider.scrollLeft;
+}
+  //滑鼠按下
+  slider.addEventListener('mousedown',handleMouseDown);
+  //滑鼠離開
+  slider.addEventListener('mouseleave',handleRemoveActive);
+  //滑鼠鬆開
+  slider.addEventListener('mouseup',handleRemoveActive);
+
+  /**
+ * 移動事件
+ * @param {*} e window.event
+ */
+function handleMove(e){
+  // 判斷滑鼠左鍵點選，未點選直接返回停止
+  if(e.buttons !== 1) return;
+  // 移動距離 剪掉相對距離 和初始距離
+  walk = e.pageX - slider.offsetLeft - startX;
+  // 卷軸設定位置
+  slider.scrollLeft = scrollLeft -walk;
+}
+  //滑鼠移動
+  slider.addEventListener('mousemove',handleMove);
+
+</script>
+
+  </body>
+</html>
