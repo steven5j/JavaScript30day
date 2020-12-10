@@ -209,19 +209,19 @@
 },
 {
     "no": 27,
-    "img":"",
+    "img":"wp-content/uploads/2020/12/27-Click-and-Drag.gif",
     "title": "Click and Drag",
     "desc": "製做一個可拖曳移動的水平捲軸",
-    "blog": "2018/01/31/Javascript30days-27/",
+    "blog": "2020/12/09/js作品js30系列27-click-and-drag/",
     "github": "27 - Click and Drag/"
 },
 {
     "no": 28,
-    "img":"",
+    "img":"wp-content/uploads/2020/12/28-Video-Speed-Controller.gif",
     "title": "Video Speed Controller",
     "desc": "製作一個可控制影片速率的拉把",
-    "blog": "2018/02/01/Javascript30days-28/",
-    "github": "day_28/"
+    "blog": "2020/12/10/js作品js30系列28-video-speed-controller/",
+    "github": "28 - Video Speed Controller/"
 },
 {
     "no": 29,
