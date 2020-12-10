@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Speed Scrubber</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body><div style="
+  height: 50px;
+  width: 100vw;
+  background-color: crimson ;
+  font-size: 20px;
+  position: fixed;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Microsoft JhengHei;
+  color: antiquewhite;
+  font-weight: 900;
+  padding: 0px;
+  ">
+    <div>製作：<a href="https://www.facebook.com/shang.ju.5">Steven玄</a>　|　心得筆記：<a href="https://stevenjhu.com/">網址連結</a>
+    </div></div>
+
+  <div class="wrapper">
+    <video class="flex" width="765" height="430" src="VfE_html5.mp4" loop controls></video>
+    <div class="speed">
+      <div class="speed-bar">1×</div>
+    </div>
+  </div>
+
+<script>
+  // 取得 speed div
+  const speed = document.querySelector('.speed');
+  // 取得 speed bar div
+  const bar = document.querySelector('.speed-bar');
+  // 取得播放器 DOM
+  const video = document.querySelector("video");
+
+  // 速度條上滑鼠移動
+  function handleMove (e){
+      // 取得滑鼠在速度條上的位置
+      const y = e.pageY - this.offsetTop;
+      // 計算移動的速度條百分比
+      const percent = y / this.offsetHeight;
+      // 速度條的最小倍速與最大倍速
+      const min = 0.4, max = 4;
+      // 播放速度計算
+      const playSpeed = percent * (max - min) + min;
+      //------------------
+      // 速度條的樣式
+      bar.style.height = `${Math.round(percent * 100)}%`;
+      // 速度條的內容文字更新
+      bar.textContent = `${playSpeed.toFixed(2)}x`;
+      // 調整播放速度
+      video.playbackRate = playSpeed;
+  }
+
+  //設定監聽
+  speed.addEventListener('mousemove',handleMove);
+
+</script>
+</body>
+</html>
