@@ -225,11 +225,11 @@
 },
 {
     "no": 29,
-    "img":"",
+    "img":"wp-content/uploads/2020/12/29-Countdown-Timer.gif",
     "title": "Countdown Timer",
     "desc": "製作一個可自定義時間的倒數計時器",
-    "blog": "2018/02/03/Javascript30days-29/",
-    "github": "day_29/"
+    "blog": "2020/12/11/js作品js30系列29-countdown-timer/",
+    "github": "29 - Countdown Timer/"
 },
 {
     "no": 30,
