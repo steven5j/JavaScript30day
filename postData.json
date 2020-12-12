@@ -233,9 +233,9 @@
 },
 {
     "no": 30,
-    "img":"",
+    "img":"wp-content/uploads/2020/12/30-Whack-A-Mole.gif",
     "title": "Whack A Mole",
     "desc": "製做一個打地鼠的小遊戲",
-    "blog": "2018/02/05/Javascript30days-30/",
-    "github": "day_30/"
+    "blog": "2020/12/12/js作品js30系列30-whack-a-mole/",
+    "github": "30 - Whack A Mole/"
 }]
